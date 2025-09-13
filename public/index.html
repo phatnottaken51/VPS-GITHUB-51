@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VPS Manager - PhatNotTaken | Based on DuckNoVis</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,117 +14,41 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            background: #0f0f23;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 198, 119, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 10%, rgba(120, 198, 255, 0.3) 0%, transparent 50%);
-            animation: backgroundMove 20s ease infinite;
-            z-index: -2;
-        }
-
-        @keyframes backgroundMove {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-20px, -20px) rotate(120deg); }
-            66% { transform: translate(20px, -10px) rotate(240deg); }
-        }
-
-        /* Floating particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        .main-container {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: #e0e0e0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 80px rgba(120, 119, 198, 0.2);
-            padding: 50px;
+            background: rgba(17, 25, 40, 0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            padding: 40px;
             width: 100%;
-            max-width: 600px;
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            max-width: 500px;
+            animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(60px) scale(0.9);
+                transform: translateY(30px) scale(0.98);
             }
             to {
                 opacity: 1;
@@ -134,242 +58,136 @@
 
         .header {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            border-radius: 30px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            box-shadow: 
-                0 20px 40px rgba(102, 126, 234, 0.4),
-                0 0 60px rgba(102, 126, 234, 0.3);
-            animation: logoFloat 3s ease-in-out infinite;
-            position: relative;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(102, 166, 255, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        .logo::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-            border-radius: 30px;
-            opacity: 0.5;
-            filter: blur(15px);
-            z-index: -1;
-            animation: logoPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+        .logo:hover {
+            transform: scale(1.1) rotate(10deg);
         }
 
         .logo i {
-            font-size: 42px;
-            color: white;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            font-size: 32px;
+            color: #0f172a;
         }
 
         .title {
-            font-size: 42px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #667eea);
-            background-size: 300% 100%;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
-            animation: gradientShift 5s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 10px;
-            font-weight: 500;
+            font-size: 16px;
+            color: #a0aec0;
+            margin-bottom: 8px;
         }
-
+        
         .subtitle strong {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+            color: #e0e0e0;
+            font-weight: 500;
         }
 
         .credits {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
+            color: #718096;
             font-style: italic;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-tabs {
-            display: flex;
-            margin-bottom: 35px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 5px;
-            gap: 5px;
-        }
-
-        .nav-tab {
-            flex: 1;
-            padding: 15px 20px;
-            text-align: center;
-            background: transparent;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.6);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-tab::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            transition: all 0.5s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .nav-tab:hover::before {
-            width: 100%;
-            height: 100%;
-        }
-
-        .nav-tab.active {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-            color: white;
-            box-shadow: 
-                0 5px 15px rgba(102, 126, 234, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .form-group {
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
+            color: #cbd5e0;
             font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .form-label i {
-            margin-right: 8px;
-            color: #667eea;
+            letter-spacing: 0.5px;
         }
 
         .form-input {
             width: 100%;
-            padding: 18px 24px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
             font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
             color: white;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
+        
         .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            color: #94a3b8;
         }
 
         .form-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(102, 126, 234, 0.5);
-            box-shadow: 
-                0 0 0 4px rgba(102, 126, 234, 0.1),
-                0 0 30px rgba(102, 126, 234, 0.2);
-            transform: translateY(-2px);
+            border-color: #66a6ff;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 4px rgba(102, 166, 255, 0.2);
         }
 
         .create-btn {
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            padding: 18px;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            color: #0f172a;
             border: none;
-            border-radius: 18px;
-            font-size: 17px;
+            border-radius: 16px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .create-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .create-btn:hover::before {
-            left: 100%;
+            letter-spacing: 0.5px;
         }
 
         .create-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 
-                0 20px 40px rgba(102, 126, 234, 0.4),
-                0 0 60px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 30px rgba(102, 166, 255, 0.3);
+        }
+        
+        .create-btn:active {
+            transform: translateY(-1px);
         }
 
         .create-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.7;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         .loading-spinner {
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(15, 23, 42, 0.3);
             border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            border-top-color: #0f172a;
+            animation: spin 1s ease-in-out infinite;
             margin-right: 10px;
+            vertical-align: middle;
         }
 
         @keyframes spin {
@@ -377,364 +195,282 @@
         }
 
         .status-message {
-            margin-top: 25px;
-            padding: 18px;
-            border-radius: 15px;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
             font-weight: 500;
             text-align: center;
-            backdrop-filter: blur(10px);
-            animation: statusSlide 0.5s ease;
-        }
-
-        @keyframes statusSlide {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            border: 1px solid transparent;
         }
 
         .status-success {
-            background: rgba(72, 187, 120, 0.1);
+            background: rgba(72, 187, 120, 0.15);
             color: #48bb78;
-            border: 1px solid rgba(72, 187, 120, 0.3);
-            box-shadow: 0 0 20px rgba(72, 187, 120, 0.2);
+            border-color: rgba(72, 187, 120, 0.3);
         }
 
         .status-error {
-            background: rgba(245, 101, 101, 0.1);
-            color: #fc5c65;
-            border: 1px solid rgba(245, 101, 101, 0.3);
-            box-shadow: 0 0 20px rgba(245, 101, 101, 0.2);
+            background: rgba(245, 101, 101, 0.15);
+            color: #f56565;
+            border-color: rgba(245, 101, 101, 0.3);
         }
 
         .status-info {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+            background: rgba(102, 166, 255, 0.15);
+            color: #89f7fe;
+            border-color: rgba(102, 166, 255, 0.3);
         }
 
         .feature-list {
-            margin-top: 40px;
-            padding-top: 40px;
+            margin-top: 30px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .feature-item {
             display: flex;
             align-items: center;
-            margin-bottom: 18px;
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(5px);
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #a0aec0;
         }
 
         .feature-item i {
-            color: #667eea;
-            margin-right: 15px;
-            width: 20px;
-            font-size: 18px;
-            filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5));
+            color: #89f7fe;
+            margin-right: 12px;
+            width: 16px;
+            text-align: center;
         }
 
         .vps-link {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            backdrop-filter: blur(10px);
-            animation: linkPulse 2s ease infinite;
-        }
-
-        @keyframes linkPulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.2); }
-            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.4); }
+            margin-top: 20px;
+            padding: 16px;
+            background: rgba(102, 166, 255, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 166, 255, 0.2);
         }
 
         .vps-link-title {
-            font-weight: 700;
-            color: white;
-            margin-bottom: 12px;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: #cbd5e0;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
         .vps-link-url {
-            color: #667eea;
+            color: #89f7fe;
             text-decoration: none;
             word-break: break-all;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            display: block;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            margin-top: 8px;
-            transition: all 0.3s ease;
+            font-family: 'Monaco', monospace;
+            font-size: 13px;
         }
 
         .vps-link-url:hover {
-            background: rgba(102, 126, 234, 0.1);
-            transform: translateX(3px);
+            text-decoration: underline;
         }
 
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-top: 20px;
+            border-radius: 3px;
+            margin-top: 15px;
             overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            border-radius: 10px;
-            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(90deg, #89f7fe, #66a6ff);
+            border-radius: 3px;
+            transition: width 0.3s ease;
             width: 0%;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 4px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 12px 20px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #a0aec0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: #e0e0e0;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .user-list {
-            max-height: 450px;
+            max-height: 400px;
             overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .user-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .user-list::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .user-list::-webkit-scrollbar-thumb {
-            background: rgba(102, 126, 234, 0.5);
-            border-radius: 10px;
         }
 
         .user-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px;
+            padding: 16px;
             background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .user-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
         }
 
         .user-token {
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Monaco', monospace;
+            font-size: 13px;
+            color: #cbd5e0;
             font-weight: 500;
         }
 
         .user-link {
-            color: #667eea;
+            color: #89f7fe;
             text-decoration: none;
-            font-size: 14px;
-            padding: 8px 16px;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 600;
         }
 
         .user-link:hover {
-            background: rgba(102, 126, 234, 0.2);
-            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+            text-decoration: underline;
         }
 
         @media (max-width: 600px) {
             .container {
-                padding: 35px 25px;
+                padding: 30px 20px;
                 margin: 10px;
             }
 
             .title {
-                font-size: 32px;
+                font-size: 28px;
             }
 
             .user-item {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 12px;
-            }
-
-            .nav-tab {
-                padding: 12px 10px;
-                font-size: 14px;
+                gap: 8px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated particles -->
-    <div class="particles" id="particles"></div>
-
-    <div class="main-container">
-        <div class="container">
-            <div class="header">
-                <div class="logo">
-                    <i class="fas fa-server"></i>
-                </div>
-                <h1 class="title">VPS Manager</h1>
-                <p class="subtitle">Developed by <strong>PhatNotTaken & DuckNoVis</strong></p>
-                <p class="credits">Based on DuckNoVis Technology</p>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-server"></i>
             </div>
+            <h1 class="title">VPS Manager</h1>
+            <p class="subtitle">Developed by <strong>PhatNotTaken And DuckNoVis</strong></p>
+            <p class="credits">Based on DuckNoVis Technology</p>
+        </div>
 
-            <div class="nav-tabs">
-                <button class="nav-tab active" onclick="switchTab('create')">
-                    <i class="fas fa-plus-circle"></i> Tạo VPS
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('create', this)">
+                <i class="fas fa-plus-circle"></i> Tạo VPS
+            </button>
+            <button class="nav-tab" onclick="switchTab('manage', this)">
+                <i class="fas fa-list"></i> Quản lý
+            </button>
+        </div>
+
+        <!-- Create VPS Tab -->
+        <div id="create-tab" class="tab-content active">
+            <form id="vpsForm">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fab fa-github"></i> GitHub Token
+                    </label>
+                    <input 
+                        type="password" 
+                        id="githubToken" 
+                        class="form-input" 
+                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="create-btn" id="createBtn">
+                    <i class="fas fa-rocket"></i> Tạo VPS Windows
                 </button>
-                <button class="nav-tab" onclick="switchTab('manage')">
-                    <i class="fas fa-list"></i> Quản lý
+
+                <div class="progress-bar" id="progressBar" style="display: none;">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </form>
+
+            <div id="statusMessage"></div>
+            <div id="vpsLink"></div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <i class="fas fa-desktop"></i>
+                    Windows Server với GUI đầy đủ
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-globe"></i>
+                    Truy cập qua noVNC (Web-based)
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    Thời gian hoạt động: 5.5 giờ
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-sync-alt"></i>
+                    Tự động khởi động lại
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    Bảo mật với mật khẩu: PhatNotTaken
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage VPS Tab -->
+        <div id="manage-tab" class="tab-content">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button onclick="loadVpsUsers()" class="create-btn" style="width: auto; padding: 12px 24px;">
+                    <i class="fas fa-sync-alt"></i> Làm mới danh sách
                 </button>
             </div>
-
-            <!-- Create VPS Tab -->
-            <div id="create-tab" class="tab-content active">
-                <form id="vpsForm">
-                    <div class="form-group">
-                        <label class="form-label">
-                            <i class="fab fa-github"></i> GitHub Token
-                        </label>
-                        <input 
-                            type="password" 
-                            id="githubToken" 
-                            class="form-input" 
-                            placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                            required
-                        >
-                    </div>
-
-                    <button type="submit" class="create-btn" id="createBtn">
-                        <i class="fas fa-rocket"></i> Tạo VPS Windows
-                    </button>
-
-                    <div class="progress-bar" id="progressBar" style="display: none;">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                </form>
-
-                <div id="statusMessage"></div>
-                <div id="vpsLink"></div>
-
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <i class="fas fa-desktop"></i>
-                        Windows Server với GUI đầy đủ
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-globe"></i>
-                        Truy cập qua noVNC (Web-based)
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-clock"></i>
-                        Thời gian hoạt động: 5.5 giờ
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-sync-alt"></i>
-                        Tự động khởi động lại
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-shield-alt"></i>
-                        Bảo mật với mật khẩu: hieudz
-                    </div>
-                </div>
-            </div>
-
-            <!-- Manage VPS Tab -->
-            <div id="manage-tab" class="tab-content">
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <button onclick="loadVpsUsers()" class="create-btn" style="width: auto; padding: 15px 30px;">
-                        <i class="fas fa-sync-alt"></i> Làm mới danh sách
-                    </button>
-                </div>
-                
-                <div id="usersList">
-                    <div style="text-align: center; padding: 50px; color: rgba(255, 255, 255, 0.6);">
-                        <i class="fas fa-server" style="font-size: 56px; margin-bottom: 25px; opacity: 0.5;"></i>
-                        <p>Nhấn "Làm mới danh sách" để xem các VPS đang hoạt động</p>
-                    </div>
+            
+            <div id="usersList">
+                <div style="text-align: center; padding: 40px; color: #718096;">
+                    <i class="fas fa-server" style="font-size: 48px; margin-bottom: 20px; opacity: 0.5;"></i>
+                    <p>Nhấn "Làm mới danh sách" để xem các VPS đang hoạt động</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        createParticles();
-
         const API_BASE = '/api';
         
         // Tab switching
-        function switchTab(tab) {
-            // Remove active class from all tabs and content
+        function switchTab(tab, element) {
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             
-            // Add active class to selected tab and content
-            event.target.classList.add('active');
+            element.classList.add('active');
             document.getElementById(tab + '-tab').classList.add('active');
         }
 
@@ -765,8 +501,8 @@
                         <i class="fas fa-external-link-alt"></i> VPS của bạn đã sẵn sàng!
                     </div>
                     <a href="${url}" target="_blank" class="vps-link-url">${url}</a>
-                    <div style="margin-top: 15px; font-size: 14px; color: rgba(255, 255, 255, 0.7);">
-                        <i class="fas fa-key"></i> Mật khẩu VNC: <strong style="color: #667eea;">hieudz</strong>
+                    <div style="margin-top: 12px; font-size: 13px; color: #a0aec0;">
+                        <i class="fas fa-key"></i> Mật khẩu VNC: <strong>PhatNotTaken</strong>
                     </div>
                 </div>
             `;
@@ -834,14 +570,15 @@
 
         // Poll VPS status
         async function pollVpsStatus(githubToken) {
-            const maxAttempts = 60; // 5 minutes with 5-second intervals
+            const maxAttempts = 30; // 5 minutes
             let attempts = 0;
-            
+
             const pollInterval = setInterval(async () => {
                 attempts++;
-                
+                updateProgress(50 + (attempts * 1.5));
+
                 try {
-                    const response = await fetch(`${API_BASE}/vps-status`, {
+                    const response = await fetch(`${API_BASE}/vpsuser`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -850,251 +587,84 @@
                             github_token: githubToken
                         })
                     });
-                    
+
                     const data = await response.json();
-                    
-                    if (response.ok && data.status === 'running' && data.vnc_url) {
+
+                    if (response.ok && data.remote_link && !data.remote_link.includes('TUNNEL_FAILED')) {
                         clearInterval(pollInterval);
                         updateProgress(100);
                         showStatus('🎉 VPS đã sẵn sàng! Đang chuyển hướng...', 'success');
-                        showVpsLink(data.vnc_url);
+                        showVpsLink(data.remote_link);
                         
-                        // Auto-redirect after 3 seconds
+                        // Auto open VPS in new tab after 3 seconds
                         setTimeout(() => {
-                            window.open(data.vnc_url, '_blank');
+                            window.open(data.remote_link, '_blank');
                         }, 3000);
-                        
-                    } else if (data.status === 'building') {
-                        const progress = Math.min(50 + (attempts * 2), 90);
-                        updateProgress(progress);
-                        showStatus(`🔧 VPS đang được xây dựng... (${attempts}/${maxAttempts})`, 'info');
-                        
-                    } else if (data.status === 'failed') {
-                        clearInterval(pollInterval);
-                        updateProgress(0);
-                        showStatus('❌ Quá trình tạo VPS thất bại. Vui lòng thử lại!', 'error');
-                        
                     } else if (attempts >= maxAttempts) {
                         clearInterval(pollInterval);
+                        showStatus('⏰ Timeout: VPS có thể vẫn đang khởi động. Vui lòng kiểm tra lại sau vài phút.', 'error');
                         updateProgress(0);
-                        showStatus('⏰ Hết thời gian chờ. VPS có thể vẫn đang được tạo, vui lòng kiểm tra lại sau.', 'error');
+                    } else {
+                        showStatus(`🔄 Đang chờ VPS khởi động... (${attempts}/${maxAttempts})`, 'info');
                     }
-                    
+
                 } catch (error) {
-                    console.error('Polling error:', error);
+                    console.log(`Poll attempt ${attempts} failed:`, error);
                     if (attempts >= maxAttempts) {
                         clearInterval(pollInterval);
+                        showStatus('❌ Không thể kết nối tới server. VPS có thể vẫn đang khởi động.', 'error');
                         updateProgress(0);
-                        showStatus('❌ Lỗi khi kiểm tra trạng thái VPS', 'error');
                     }
                 }
-            }, 5000); // Poll every 5 seconds
+            }, 10000); // Check every 10 seconds
         }
 
         // Load VPS users list
         async function loadVpsUsers() {
             const usersList = document.getElementById('usersList');
-            
-            try {
-                usersList.innerHTML = `
-                    <div style="text-align: center; padding: 50px;">
-                        <div class="loading-spinner" style="width: 40px; height: 40px; border-width: 4px;"></div>
-                        <p style="color: rgba(255, 255, 255, 0.7); margin-top: 20px;">Đang tải danh sách VPS...</p>
-                    </div>
-                `;
+            usersList.innerHTML = '<div style="text-align: center; padding: 20px;"><span class="loading-spinner" style="border-top-color: #e0e0e0; border-color: rgba(255,255,255,0.3);"></span> Đang tải...</div>';
 
-                const response = await fetch(`${API_BASE}/list-vps`);
+            try {
+                const response = await fetch(`${API_BASE}/vpsuser`);
                 const data = await response.json();
 
                 if (response.ok && data.users && data.users.length > 0) {
-                    let usersHtml = '<div class="user-list">';
-                    
-                    data.users.forEach((user, index) => {
-                        usersHtml += `
-                            <div class="user-item" style="animation-delay: ${index * 0.1}s;">
-                                <div>
-                                    <div class="user-token">${user.token.substring(0, 20)}...</div>
-                                    <div style="font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-top: 5px;">
-                                        <i class="fas fa-clock"></i> Tạo: ${new Date(user.created_at).toLocaleString('vi-VN')}
-                                    </div>
-                                    ${user.repository ? `
-                                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-top: 3px;">
-                                            <i class="fab fa-github"></i> ${user.repository}
-                                        </div>
-                                    ` : ''}
+                    usersList.innerHTML = `
+                        <div style="margin-bottom: 20px; text-align: center; color: #cbd5e0;">
+                            <strong>${data.total}</strong> VPS đang hoạt động
+                        </div>
+                        <div class="user-list">
+                            ${data.users.map(user => `
+                                <div class="user-item">
+                                    <div class="user-token">${user.token}</div>
+                                    <a href="${user.link}" target="_blank" class="user-link">
+                                        <i class="fas fa-external-link-alt"></i> Truy cập VPS
+                                    </a>
                                 </div>
-                                <div>
-                                    ${user.vnc_url ? `
-                                        <a href="${user.vnc_url}" target="_blank" class="user-link">
-                                            <i class="fas fa-external-link-alt"></i> Truy cập VPS
-                                        </a>
-                                    ` : `
-                                        <span style="color: rgba(255, 255, 255, 0.5); font-size: 14px;">
-                                            <i class="fas fa-hourglass-half"></i> Đang tạo...
-                                        </span>
-                                    `}
-                                </div>
-                            </div>
-                        `;
-                    });
-                    
-                    usersHtml += '</div>';
-                    usersList.innerHTML = usersHtml;
-                    
-                    // Add count info
-                    const countInfo = document.createElement('div');
-                    countInfo.style.cssText = 'text-align: center; margin-top: 20px; color: rgba(255, 255, 255, 0.6);';
-                    countInfo.innerHTML = `<i class="fas fa-server"></i> Tổng cộng: ${data.users.length} VPS đang hoạt động`;
-                    usersList.appendChild(countInfo);
-                    
+                            `).join('')}
+                        </div>
+                    `;
                 } else {
                     usersList.innerHTML = `
-                        <div style="text-align: center; padding: 50px; color: rgba(255, 255, 255, 0.6);">
-                            <i class="fas fa-inbox" style="font-size: 56px; margin-bottom: 25px; opacity: 0.5;"></i>
-                            <p>Hiện tại chưa có VPS nào đang hoạt động</p>
+                        <div style="text-align: center; padding: 40px; color: #718096;">
+                            <i class="fas fa-server" style="font-size: 48px; margin-bottom: 20px; opacity: 0.5;"></i>
+                            <p>Chưa có VPS nào đang hoạt động</p>
                         </div>
                     `;
                 }
-                
             } catch (error) {
-                console.error('Error loading VPS list:', error);
+                console.error('Error loading VPS users:', error);
                 usersList.innerHTML = `
-                    <div style="text-align: center; padding: 50px; color: #fc5c65;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 56px; margin-bottom: 25px; opacity: 0.7;"></i>
+                    <div style="text-align: center; padding: 40px; color: #f56565;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px; opacity: 0.5;"></i>
                         <p>Lỗi khi tải danh sách VPS</p>
-                        <button onclick="loadVpsUsers()" style="margin-top: 15px; padding: 10px 20px; background: rgba(252, 92, 101, 0.2); border: 1px solid rgba(252, 92, 101, 0.3); border-radius: 8px; color: #fc5c65; cursor: pointer;">
-                            <i class="fas fa-redo"></i> Thử lại
-                        </button>
                     </div>
                 `;
             }
         }
 
-        // Enhanced error handling for fetch requests
-        async function fetchWithTimeout(url, options = {}, timeout = 30000) {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), timeout);
-            
-            try {
-                const response = await fetch(url, {
-                    ...options,
-                    signal: controller.signal
-                });
-                clearTimeout(timeoutId);
-                return response;
-            } catch (error) {
-                clearTimeout(timeoutId);
-                if (error.name === 'AbortError') {
-                    throw new Error('Yêu cầu hết thời gian chờ');
-                }
-                throw error;
-            }
-        }
-
-        // Auto-refresh VPS list every 30 seconds when on manage tab
-        let refreshInterval;
-        
-        function switchTab(tab) {
-            // Clear existing interval
-            if (refreshInterval) {
-                clearInterval(refreshInterval);
-                refreshInterval = null;
-            }
-            
-            // Remove active class from all tabs and content
-            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            // Add active class to selected tab and content
-            event.target.classList.add('active');
-            document.getElementById(tab + '-tab').classList.add('active');
-            
-            // Auto-refresh for manage tab
-            if (tab === 'manage') {
-                loadVpsUsers();
-                refreshInterval = setInterval(loadVpsUsers, 30000);
-            }
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
-                    case '1':
-                        e.preventDefault();
-                        document.querySelector('[onclick="switchTab(\'create\')"]').click();
-                        break;
-                    case '2':
-                        e.preventDefault();
-                        document.querySelector('[onclick="switchTab(\'manage\')"]').click();
-                        break;
-                    case 'r':
-                        if (document.getElementById('manage-tab').classList.contains('active')) {
-                            e.preventDefault();
-                            loadVpsUsers();
-                        }
-                        break;
-                }
-            }
-        });
-
-        // Add keyboard shortcut hints
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.querySelector('.container');
-            const shortcutsDiv = document.createElement('div');
-            shortcutsDiv.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: rgba(0, 0, 0, 0.8);
-                color: rgba(255, 255, 255, 0.7);
-                padding: 15px;
-                border-radius: 10px;
-                font-size: 12px;
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                z-index: 1000;
-                opacity: 0;
-                transform: translateY(20px);
-                transition: all 0.3s ease;
-            `;
-            
-            shortcutsDiv.innerHTML = `
-                <div style="font-weight: 600; margin-bottom: 8px;">
-                    <i class="fas fa-keyboard"></i> Phím tắt
-                </div>
-                <div>Ctrl+1: Tạo VPS</div>
-                <div>Ctrl+2: Quản lý</div>
-                <div>Ctrl+R: Làm mới</div>
-            `;
-            
-            document.body.appendChild(shortcutsDiv);
-            
-            // Show shortcuts on hover
-            let showTimeout;
-            container.addEventListener('mouseenter', () => {
-                showTimeout = setTimeout(() => {
-                    shortcutsDiv.style.opacity = '1';
-                    shortcutsDiv.style.transform = 'translateY(0)';
-                }, 1000);
-            });
-            
-            container.addEventListener('mouseleave', () => {
-                clearTimeout(showTimeout);
-                shortcutsDiv.style.opacity = '0';
-                shortcutsDiv.style.transform = 'translateY(20px)';
-            });
-        });
-
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', () => {
-            // Focus on GitHub token input
-            document.getElementById('githubToken').focus();
-            
-            // Add some loading animation delays
-            const elements = document.querySelectorAll('.feature-item');
-            elements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.1}s`;
-                el.style.animation = 'fadeIn 0.6s ease forwards';
-            });
-        });
+        // Auto-focus GitHub token input
+        document.getElementById('githubToken').focus();
+    </script>
+</body>
+</html>
