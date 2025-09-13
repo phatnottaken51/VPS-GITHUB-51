@@ -1,7 +1,7 @@
 import { Octokit } from '@octokit/rest';
 import fs from 'fs';
 import sodium from 'libsodium-wrappers';
-const ALLOWED_ORIGIN_PATTERN = /^https?:\/\/([\w\-]+\.)?(hieuvn\.xyz|vps-github\.vercel\.app)(\/.)?$/;
+const ALLOWED_ORIGIN_PATTERN = /^https:\/\/vps-github-delta\.vercel\.app$/;
 const VPS_USER_FILE = '/tmp/vpsuser.json';
 
 // Save VPS user to temporary storage
